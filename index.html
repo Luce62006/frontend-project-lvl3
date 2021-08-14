@@ -1,6 +1,5 @@
 
 <!DOCTYPE html>
-@import "./node_modules/bootstrap/scss/bootstrap"
 <html lang="en">
 <head>
     <!doctype html>
@@ -8,7 +7,14 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Title</title>
+        <title>RSS агрегатор</title>
+
+    <style>
+        .header {
+            color: white;
+        }
+
+    </style>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
               integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
               crossorigin="anonymous">
@@ -18,8 +24,30 @@
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
 
+    <div class="container-fluid bg-dark p-5 ">
+        <div class="row-mb-3">
+            <div class="col-lg-8 col-md-10 header mx-auto">
+                <h1 class="display-3">RSS агрегатор</h1>
+                <h2 class="h5">Начните читать RSS сегодня! Это легко, это красиво.</h2>
+                <div class="row  mb-3 justify-content-between p-2">
+            <input class="col-lg-7 form-control form-control-lg" type="text" placeholder="Ссылка RSS">
+                <button type="button" class=" col-4 btn btn-primary btn-lg">Добавить</button>
+                    <p class="text-muted">Пример: https://ru.hexlet.io/lessons.rss</p>
+                </div>
+            </div>
+        </div>
 
-    <title>Title</title>
+    </div>
 </head>
+<body class="bg-white">
+
+</body>
+<footer class=" bg-light text-center ">
+
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        <a class="text-dark" href="https://hexlet.io">created by Hexlet</a>
+    </div>
+
+</footer>
 
 </html>
