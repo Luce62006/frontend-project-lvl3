@@ -9,12 +9,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>RSS агрегатор</title>
 
-    <style>
-        .header {
-            color: white;
-        }
 
-    </style>
+    <link rel="stylesheet" href="src/index.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
               integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
               crossorigin="anonymous">
@@ -29,11 +25,14 @@
             <div class="col-lg-8 col-md-10 header mx-auto">
                 <h1 class="display-3">RSS агрегатор</h1>
                 <h2 class="h5">Начните читать RSS сегодня! Это легко, это красиво.</h2>
+                <form class="form-floating">
+                    <label for="floatingInputInvalid">Invalid input</label>
                 <div class="row  mb-3 justify-content-between p-2">
-            <input class="col-lg-7 form-control form-control-lg" type="text" placeholder="Ссылка RSS">
-                <button type="button" class=" col-4 btn btn-primary btn-lg">Добавить</button>
+            <input class="col-lg-7   form-control-lg form-control is-invalid" id="floatingInputInvalid"  type="url" placeholder="Ссылка RSS">
+                    <button type="button" class=" col-4 btn btn-primary btn-lg">Добавить</button>
                     <p class="text-muted">Пример: https://ru.hexlet.io/lessons.rss</p>
                 </div>
+                </form>
             </div>
         </div>
 
