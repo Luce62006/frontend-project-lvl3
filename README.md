@@ -9,3 +9,5 @@
 [![linter](https://github.com/Luce62006/frontend-project-lvl3/workflows/linter-and-tests/badge.svg)](https://github.com/Luce62006/frontend-project-lvl3/actions)
 
 https://frontend-project-lvl3-nu-wheat.vercel.app/
+
+https://frontend-project-lvl3-nu-wheat.vercel.app/
