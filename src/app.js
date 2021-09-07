@@ -1,7 +1,5 @@
 import {schema} from './rssFormValidation.js';
 
-
-
 const app = () => {
     const state = {
         registrationForm: {
