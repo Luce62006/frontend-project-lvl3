@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Luce62006/frontend-project-lvl3#readme",
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/eslint-parser": "^7.15.4",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.0",
