@@ -17,3 +17,25 @@
   bottom: 0;
   width: 100%;
 }
+
+.green {
+  color:green;
+}
+.red {
+  color: red;
+}
+
+
+
+
+
+/*@mixin message {
+  color: red;
+
+    @if (message == correct) {
+      $color: green;
+    } @else {
+      $color: red;
+    }
+  }
+*/
