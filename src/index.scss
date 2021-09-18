@@ -26,16 +26,31 @@
 }
 
 
-
-
-
-/*@mixin message {
+form.error .message {
   color: red;
+}
 
-    @if (message == correct) {
-      $color: green;
-    } @else {
-      $color: red;
-    }
+form.error input {
+  border: thick solid red;
+}
+
+form.success .message {
+  color: green;
+}
+
+
+
+
+/*
+
+@mixin message ( $color) {
+  color: $color;
+}
+
+.error {
+  @include message(red)
   }
-*/
+.success {
+  @include message(green)
+}*/
+
