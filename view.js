@@ -2,9 +2,14 @@ import onChange from 'on-change';
 
 const app = () => {
     const state = {
-        ui: {
-            value: 'hello',
-        },
+            inputValue: ' '
+        }
+    const form = document.querySelector('form');
+    const input = document.querySelector('form input');
+    form.addEventListener('submit', () => {
+        watchedState.registrationProcess.state = 'processing';
+        //активировать спиннер?//
+    });
     };
 
     const watchedState = onChange(state, (path, value, previousValue) => {
@@ -15,11 +20,11 @@ const app = () => {
         // => 'other value'
         console.log(previousValue);
         // => 'hello'
-    });
+    })
 
     // После изменения атрибута возникнет алерт
     /*const el = document.querySelector('<selector>');
     el.addEventListener('change', () => {
         watchedState.ui.value = 'other value';
     });*/
-}
+
