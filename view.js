@@ -1,5 +1,4 @@
-import onChange from 'on-change';
-
+/*import onChange from 'on-change';
 const app = () => {
     const state = {
             inputValue: ' '
@@ -22,9 +21,9 @@ const app = () => {
         // => 'hello'
     })
 
-    // После изменения атрибута возникнет алерт
-    /*const el = document.querySelector('<selector>');
+     После изменения атрибута возникнет алерт
+    const el = document.querySelector('<selector>');
     el.addEventListener('change', () => {
         watchedState.ui.value = 'other value';
-    });*/
-
+    });
+*/

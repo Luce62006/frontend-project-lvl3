@@ -1,4 +1,4 @@
-fetch(url)
+/*fetch(url)
     .then(response => {
         return response.json().then(data => {
             if (response.ok) {
@@ -9,4 +9,4 @@ fetch(url)
         });
     })
     .then(result => console.log('success:', result))
-    .catch(error => console.log('недоступный URL:', error));
+    .catch(error => console.log('недоступный URL:', error));*/
