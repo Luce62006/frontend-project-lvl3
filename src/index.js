@@ -130,23 +130,21 @@ console.log(doc);
                         .then(response => response.text())
                         .then(data => {
                             elSpinner.classList.add('d-none');
-
                             elMessage.textContent = correct;
                             elForm.classList.add('success');
                             renderRSS(data)
                         })
                         .catch((error)=> { elMessage.textContent= 'Ошибка сети';
                         elForm.classList.add('error')});
-
-
                 } else {
-
                     elForm.classList.add('error');
                     if( input.value ){
                         elMessage.textContent = error;
+                        elSpinner.classList.add('d-none');
                     }
-else {
+                    else {
                         elMessage.textContent = 'Заполните форму';
+                        elSpinner.classList.add('d-none');
 
                     }
                 }
