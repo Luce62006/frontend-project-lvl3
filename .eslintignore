@@ -1,6 +1,0 @@
-{
-    "ignorePatterns": ["temp.js", "dist/app.bundle.js"],
-    "rules": {
-        //...
-    }
-}

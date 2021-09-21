@@ -1,12 +1,6 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "node": true
-    }
-  },
   "eslintIgnore": ["hello.js", "dist/app.bundle.js"],
 
   "description": "RSS агрегатор",
