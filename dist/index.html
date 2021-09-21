@@ -28,7 +28,7 @@
                 <h1 class="display-3">RSS агрегатор</h1>
                 <h2 class="h5">Начните читать RSS сегодня! Это легко, это красиво.</h2>
                 <form class="form-floating">
-                    <div class="row  mb-3 justify-content-between p-2">
+                    <div class="row  mb-3 justify-content-between p-2" id="formRss">
                     <label for="input-form"></label>
                     <input class="col-lg-7   form-control-lg form-control" id="input-form" type="url" placeholder="Ссылка RSS" value="https://ru.hexlet.io/lessons.rss">
                     <button type="button" class=" col-4 btn btn-primary btn-lg">Добавить</button>
@@ -51,14 +51,14 @@
         <div class="row">
             <div class="col-8">
                 <div class="card border-0">
-                 <div class="card-body">
-                    <h2 class="card-title h4">Посты</h2>
+                 <div class="card-body ">
+                    <h2 class="card-title h4" id="postsRss">Посты</h2>
                 </div>
                     <ul class="list-group border-0 rounded-0" id="posts"></ul>
                 </div>
             </div>
                  <div class=" col-3 card-body">
-                     <h2 class="card-title h4">Фиды</h2>
+                     <h2 class="card-title h4"  id="feedsRss" >Фиды</h2>
 
         <ul class="list-group border-0 rounded-0"  id="feeds"></ul>
                 </div></div>
