@@ -4,6 +4,8 @@ export class FormWidget {
 
 
     status(ok, message) {
+        this.uiElements.elForm.classList.remove('success', 'error');
+
         if (ok === true) {
             this.uiElements.elSpinner.classList.add('d-none');
             this.uiElements.elMessage.textContent = message;
@@ -28,9 +30,9 @@ export class FormWidget {
 
         // основная вёрстка
         const html = `<form class="form-floating">
-                        <div class="row  mb-3 justify-content-between p-2">
+                        <div class="row mb-3 justify-content-between p-2">
                             <label for="input-form"></label>
-                            <input class="col-lg-7   form-control-lg form-control" id="input-form" type="url" placeholder="Ссылка RSS" value="https://ru.hexlet.io/lessons.rss" />
+                            <input class="col-lg-7 form-control-lg form-control" id="input-form" type="url" placeholder="Ссылка RSS" value="https://ru.hexlet.io/lessons.rss" />
                                                         
                             <div class="text-center">
                                 <div class="spinner-border d-none" role="status">
@@ -91,3 +93,5 @@ export class FormWidget {
 
     }
 }
+
+

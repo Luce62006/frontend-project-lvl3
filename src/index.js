@@ -1,9 +1,9 @@
 import {schema} from './rssFormValidation';
-import {FormWidget} from "./formWidget";
-import {FeedsWidget} from "./Feeds.widget";
+import {FormWidget} from "./form.widget";
+import {FeedsWidget} from "./feeds.widget";
 import {initPhrases} from "./phrases";
 import i18next from "i18next";
-import {PostsWidget} from "./postsWidget.js ";
+import {PostsWidget} from "./posts.widget.js";
 
 const model =  {
     rssFeeds: []
