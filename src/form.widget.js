@@ -66,6 +66,7 @@ export class FormWidget {
         elExampleOfURL.innerHTML = this.phrases.t('example');
         elSubmit.innerHTML = this.phrases.t('btnAdd');
 
+        // eslint-disable-next-line no-unused-vars
         elSubmit.addEventListener('click', (e) => {
             const formData = {
                 url: elInput.value,
