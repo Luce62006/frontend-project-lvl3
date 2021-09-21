@@ -8,11 +8,10 @@ export class FeedsWidget {
             return;
         }
 
-        const html = `
-            <h2 className="card-title h4">Фиды</h2>
+        const html = `<h2 className="card-title h4">Фиды</h2>
             <ul className="list-group border-0 rounded-0">            
             </ul>
-            `;
+           ` ;
 
         elContainer.insertAdjacentHTML('afterbegin', html);
 
@@ -42,3 +41,4 @@ export class FeedsWidget {
     }
 
 }
+
