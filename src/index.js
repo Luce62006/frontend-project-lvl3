@@ -3,7 +3,7 @@ import {FormWidget} from "./formWidget";
 import {FeedsWidget} from "./Feeds.widget";
 import {initPhrases} from "./phrases";
 import i18next from "i18next";
-import {PostsWidget} from "postsWidget.js ";
+import {PostsWidget} from "./postsWidget.js ";
 
 const model =  {
     rssFeeds: []
