@@ -1,156 +1,147 @@
 import {schema} from './rssFormValidation';
-import i18next from 'i18next';
+import {FormWidget} from "./formWidget";
+import {FeedsWidget} from "./Feeds.widget";
+import {initPhrases} from "./phrases";
+import i18next from "i18next";
+import {PostsWidget} from "postsWidget.js ";
+
+const model =  {
+    rssFeeds: []
+}
+
+const initPage = async () => {
+
+    // жду инициализации словарика фраз
+    await initPhrases;
+
+    // виджеты страницы
+    let widgetForm, widgetFeeds, widgetPosts;
 
 
+    // парсинг RSS строки в объектную модель
+    const parseRss = (data) => {
+        const rssFeed = {
+            posts: []
+        };
 
-const index = async () => {
-    const renderRSS = (data) => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(data, "application/xml");
-console.log(doc);
 
-        const posts = document.getElementById("posts");
-
-        posts.innerHTML='';
+        const channel = doc.querySelector('channel')
+        if (!channel) {
+            return undefined;
+        }
+        rssFeed.title = channel.querySelector('title')?.textContent;
+        rssFeed.description = channel.querySelector('description')?.textContent;
 
         doc.querySelectorAll('item').forEach((item) => {
-            const posttitle = item.querySelector('title').textContent;
-            const postlink = item.querySelector('link').textContent;
-            const postDescription = item.querySelector('description')?.textContent;
-            const pubDate = item.querySelector('pubDate').textContent;
-
-
-            const li = document.createElement('li');
-            li.classList.add('list-group-item', 'mb-2', 'd-flex', 'justify-content-between');
-            const a = document.createElement('a');
-            a.classList.add('fw-bold', 'col-lg', 'text-decoration-none');
-            a.href = postlink;
-            a.textContent = posttitle;
-            li.append(a);
-            posts.insertAdjacentElement("beforeend", li);
-
-            const modalButton = document.createElement('button');
-            modalButton.addEventListener('click', (e) => {
-                $('#myModal').modal('show')
-           const modalTitle = document.querySelector('#myModal .modal-title');
-                modalTitle.textContent = posttitle;
-                const modalDescription = document.querySelector('#myModal .modal-body');
-                modalDescription.textContent = postDescription;
-                const modalLink = document.querySelector('#myModal .full-article');
-                modalLink.setAttribute( 'href',postlink);
-
-
+            rssFeed.posts.push( {
+                title: item.querySelector('title').textContent,
+                link: item.querySelector('link').textContent,
+                description: item.querySelector('description')?.textContent,
+                pubDate: item.querySelector('pubDate').textContent,
+                guid: item.querySelector('guid').textContent
             })
-            modalButton.classList.add('btn', 'btn-outline-primary', 'btn-sm', 'col-md-auto');
-            modalButton.textContent = 'просмотр';
-            li.append(modalButton)
         })
 
+        return rssFeed;
+    }
 
-        const feeds = document.getElementById("feeds");
-        feeds.innerHTML='';
+    // обновить данные для RSS потока
+    const updateRss = (url, rssFeed) => {
+        console.log('Обновляю RSS информацию по ' + url);
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const updatedFeed = parseRss(data.contents);
+                if (updatedFeed) {
+                    // новые посты - это те, которых не было раньше в rss потоке
+                    const newPosts = updatedFeed.posts.filter((post) =>
+                        !rssFeed.posts.find((e) => e.guid === post.guid)
+                    );
 
-        const channel  = doc.querySelector('channel')
+                    // если новые посты есть
+                    if (newPosts?.length > 0) {
+                        console.log('Появились новые посты!');
+                        console.log(newPosts);
 
-            const feedTitle = channel.querySelector('title').textContent;
-            const feedDescription = channel.querySelector('description').textContent;
-
-            const li = document.createElement('li');
-            li.classList.add('mb-3');
-
-            const h4 = document.createElement('h4');
-            li.append(h4);
-
-            const a = document.createElement('a');
-            a.classList.add('text-decoration-none');
-            a.textContent = feedTitle;
-            h4.append(a);
-
-            const p = document.createElement('p');
-            p.textContent = feedDescription;
-            li.append(p);
-            feeds.insertAdjacentElement('beforeend', li);
-         }
-
-
-        await i18next.init({
-            lng: 'en', // Текущий язык
-            debug: true,
-            resources: {
-                ru: { // Тексты конкретного языка
-                    translation: { // Так называемый namespace по умолчанию
-                        btnAdd: 'Добавить',
-                        H1: 'RSS агрегатор',
-                        H2: 'Начните читать RSS сегодня! Это легко, это красиво.',
-                        example: 'Пример: https://ru.hexlet.io/lessons.rss'
-                    }
-                },
-
-                en: { // Тексты конкретного языка
-                    translation: { // Так называемый namespace по умолчанию
-                        btnAdd: 'Add',
-                        H1: 'RSS agregator',
-                        H2: "Start reading RSS today! It's easy, it's beautiful.",
-                        example: 'Example: https://ru.hexlet.io/lessons.rss'
+                        // то добавляю себе в список новые посты
+                        rssFeed.posts.push(...newPosts);
+                        widgetPosts.addPosts(newPosts);
+                    } else {
+                        console.log('Нет новых постов, было получено: ' + rssFeed?.posts.length);
                     }
                 }
-
-            }
+            }).catch(error => {
+            console.error(error);
+        }).finally(() => {
+            // чем бы там не закончилось обращение - взвожу таймер повторно
+            setTimeout(() => { updateRss(url, rssFeed); }, 5000);
         });
+    }
 
-    const elForm= document.querySelector('form');
-        const input = document.querySelector('.form-control');
-        const submit = document.querySelector('form button');
-        submit.innerHTML = i18next.t("btnAdd");
-        const h1 = document.querySelector('.display-3')
-        h1.innerHTML = i18next.t('H1');
-        const h2 = document.querySelector('.h5');
-        h2.innerHTML = i18next.t('H2');
-        const exampleOfURL = document.querySelector('.text-muted');
-        exampleOfURL.innerHTM = i18next.t('example');
+    // обработать полученные данные RSS потока (в виде строки)
+    const processRss = (rssFeedSource, data) => {
 
-        submit.addEventListener('click', (e) => {
-            const formData = {
-                url: input.value,
-            }
+        // строю объектную модель RSS потока
+        const rssFeed =  parseRss(data);
 
-            const elSpinner = document.querySelector('#spinner');
-            const elMessage = document.querySelector('.message');
-           const correct  = 'RSS успешно загружен';
-           const error = 'Ссылка должна быть валидным URL';
+        if (!rssFeed || !rssFeed.title) {
+            widgetForm.status(false, 'Полученные данные не являются RSS');
+            return;
+        }
+
+        const existingFeed = model.rssFeeds.find((e) => e.title === rssFeed.title);
+        if (existingFeed) {
+            widgetForm.status(false, 'Такой поток уже существует');
+            return;
+        }
+
+        model.rssFeeds.push(rssFeed);
+        widgetFeeds.addFeed(rssFeed);
+        widgetPosts.addPosts(rssFeed.posts);
 
 
-            schema.isValid(formData).then((valid) => {
-                console.log(valid)
-                elForm.className = 'form-floating';
-                elMessage.textContent = '';
-                if (valid) {
-                    elSpinner.classList.remove('d-none');
-                    fetch(formData.url)
-                        .then(response => response.text())
-                        .then(data => {
-                            elSpinner.classList.add('d-none');
-                            elMessage.textContent = correct;
-                            elForm.classList.add('success');
-                            renderRSS(data)
-                        })
-                        .catch((error)=> { elMessage.textContent= 'Ошибка сети';
-                        elForm.classList.add('error')});
-                } else {
-                    elForm.classList.add('error');
-                    if( input.value ){
-                        elMessage.textContent = error;
-                        elSpinner.classList.add('d-none');
-                    }
-                    else {
-                        elMessage.textContent = 'Заполните форму';
-                        elSpinner.classList.add('d-none');
+        // завожу таймер для выполнения повторного опроса
+        setTimeout(() => { updateRss(rssFeedSource, rssFeed); }, 5000);
+    }
 
-                    }
-                }
-            });
-        });
+    // обработчик добавления нового RSS потока
+    const rssFeedHandler = (sender, url) => {
+        const rssFeedSource = 'https://hexlet-allorigins.herokuapp.com/get?url=' + url +'&disableCache=true'
+        fetch(rssFeedSource)
+            .then(response => response.json())
+            .then(data => {
+                sender.status(true, i18next.t('rssCorrect'));
+                processRss(rssFeedSource, data.contents);
+            })
+            .catch((error)=> {
+                console.error(error);
+                sender.status(false, i18next.t('rssError'));
+            })
+    }
 
+    widgetFeeds = new FeedsWidget('#feedsRss', {
+        phrases: i18next
+    })
+
+    widgetForm = new FormWidget('#formRss', {
+        phrases: i18next,
+        onNewRssFeed: rssFeedHandler
+    });
+
+    widgetPosts = new PostsWidget('#postsRss', {
+        phrases: i18next
+    })
+
+
+    /*
+
+            const h1 = document.querySelector('.display-3')
+            h1.innerHTML = i18next.t('H1');
+            const h2 = document.querySelector('.h5');
+            h2.innerHTML = i18next.t('H2');
+     */
 }
-    console.log('Hello!')
-    index();
+
+initPage();
