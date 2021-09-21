@@ -1,5 +1,7 @@
+/* eslint-disable no-undef */
 export class PostsWidget {
 
+    // eslint-disable-next-line no-unused-vars
     constructor(selector, config) {
 
         // получаем контейнер (куда надо разместить себя)
@@ -37,7 +39,9 @@ export class PostsWidget {
             a.textContent = post.title;
             li.append(a);
 
+            // eslint-disable-next-line no-undef
             const modalButton = document.createElement('button');
+            // eslint-disable-next-line no-unused-vars
             modalButton.addEventListener('click', (e) => {
                 $('#myModal').modal('show')
                 const modalTitle = document.querySelector('#myModal .modal-title');

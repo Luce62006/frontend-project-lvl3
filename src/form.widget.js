@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import {schema} from "./rssFormValidation";
 
 export class FormWidget {

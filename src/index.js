@@ -1,4 +1,3 @@
-import {schema} from './rssFormValidation';
 import {FormWidget} from "./form.widget";
 import {FeedsWidget} from "./feeds.widget";
 import {initPhrases} from "./phrases";
@@ -24,6 +23,7 @@ const initPage = async () => {
             posts: []
         };
 
+        // eslint-disable-next-line no-undef
         const parser = new DOMParser();
         const doc = parser.parseFromString(data, "application/xml");
 
@@ -50,6 +50,7 @@ const initPage = async () => {
     // обновить данные для RSS потока
     const updateRss = (url, rssFeed) => {
         console.log('Обновляю RSS информацию по ' + url);
+        // eslint-disable-next-line no-undef
         fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -109,6 +110,7 @@ const initPage = async () => {
     // обработчик добавления нового RSS потока
     const rssFeedHandler = (sender, url) => {
         const rssFeedSource = 'https://hexlet-allorigins.herokuapp.com/get?url=' + url +'&disableCache=true'
+        // eslint-disable-next-line no-undef
         fetch(rssFeedSource)
             .then(response => response.json())
             .then(data => {

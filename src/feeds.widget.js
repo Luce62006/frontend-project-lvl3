@@ -1,4 +1,6 @@
+/* eslint-disable no-undef */
 export class FeedsWidget {
+    // eslint-disable-next-line no-unused-vars
     constructor(selector, config) {
 
         // получаем контейнер (куда надо разместить себя)
