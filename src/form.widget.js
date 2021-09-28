@@ -23,7 +23,7 @@ export class FormWidget {
         this.phrases = config.phrases;
 
         // получаем контейнер (куда надо разместить себя)
-        const elContainer = document.getElementById( "formRss");
+        const elContainer = document.querySelector( selector);
         if (!elContainer) {
             console.error('Контейнер не найден');
             return;
