@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-
+  "eslintIgnore": ["**/dist/*.js"],
 
   "description": "RSS агрегатор",
   "main": "index.js",
