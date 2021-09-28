@@ -137,13 +137,6 @@ const initPage = async () => {
     })
 
 
-    /*
-
-            const h1 = document.querySelector('.display-3')
-            h1.innerHTML = i18next.t('H1');
-            const h2 = document.querySelector('.h5');
-            h2.innerHTML = i18next.t('H2');
-     */
 }
 
 initPage();
