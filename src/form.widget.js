@@ -35,7 +35,7 @@ export class FormWidget {
                             <label for="input-form"></label>
                             <input class="col-lg-7 form-control-lg form-control" id="input-form" type="url" placeholder="Ссылка RSS" value="https://ru.hexlet.io/lessons.rss" />
                                                         
-                            <div class="text-center">
+                            <div class="text-center col-1">
                                 <div class="spinner-border d-none" role="status">
                                     <span class="visually-hidden">Loading...</span>
                                 </div>
