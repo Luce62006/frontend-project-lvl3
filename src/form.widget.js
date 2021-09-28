@@ -49,7 +49,7 @@ export class FormWidget {
         elContainer.insertAdjacentHTML('afterbegin', html);
 
         // элементы пользовательского интерфейса
-        const elForm= document.querySelector(`${selector} form`);
+        const elForm= document.querySelector(`${selector} formRss`);
         const elInput = document.querySelector(`${selector} .form-control`);
         const elSubmit = document.querySelector(`${selector} form button`);
         const elExampleOfURL = document.querySelector(`${selector} .text-muted`);
