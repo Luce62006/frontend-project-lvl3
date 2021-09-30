@@ -87,7 +87,7 @@ export class FormWidget {
                         elMessage.textContent = this.phrases.t('rssError');
                     }
                     else {
-                        elMessage.textContent = 'Заполните форму';
+                        elMessage.textContent = 'Не должно быть пустым';
                     }
                 }
             });

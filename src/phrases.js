@@ -1,7 +1,7 @@
 import i18next from "i18next";
 
 export const initPhrases = i18next.init({
-    lng: 'en', // Текущий язык
+    lng: 'ru', // Текущий язык
     debug: true,
     resources: {
         ru: { // Тексты конкретного языка

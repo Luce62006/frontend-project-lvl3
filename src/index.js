@@ -88,13 +88,13 @@ const initPage = async () => {
         const rssFeed =  parseRss(data);
 
         if (!rssFeed || !rssFeed.title) {
-            widgetForm.status(false, 'Полученные данные не являются RSS');
+            widgetForm.status(false, 'Ресурс не содержит валидный RSS');
             return;
         }
 
         const existingFeed = model.rssFeeds.find((e) => e.title === rssFeed.title);
         if (existingFeed) {
-            widgetForm.status(false, 'Такой поток уже существует');
+            widgetForm.status(false, 'RSS уже существует');
             return;
         }
 
