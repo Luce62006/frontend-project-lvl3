@@ -31,7 +31,7 @@ export class FormWidget {
         const html = `<form class="form-floating">
                         <div class="row mb-3 justify-content-between p-2">
                             <label for="input-form"></label>
-                            <input class="col-lg-7 form-control-lg form-control"name="url" aria-label="url"  id="input-form" type="url" placeholder="Ссылка RSS" />
+                            <input class="col-lg-7 form-control-lg form-control" name="url" aria-label="url"  id="input-form" type="url" placeholder="Ссылка RSS" />
                                                         
                             <div class="text-center col-1">
                                 <div class="spinner-border d-none" role="status">
@@ -39,7 +39,7 @@ export class FormWidget {
                                 </div>
                             </div>
                     
-                            <button type="button"  name= "add" class=" col-4 btn btn-primary btn-lg">Добавить</button>
+                            <button type="button"  name="add" class=" col-4 btn btn-primary btn-lg">Добавить</button>
                             <p class="text-muted">Пример: https://ru.hexlet.io/lessons.rss</p>
                             <p class=" message"></p>
                         </div>
