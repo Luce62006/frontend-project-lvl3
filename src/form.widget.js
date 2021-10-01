@@ -3,10 +3,8 @@ import {schema} from "./rssFormValidation";
 
 export class FormWidget {
 
-
     status(ok, message) {
         this.uiElements.elForm.classList.remove('success', 'error');
-
         if (ok === true) {
             this.uiElements.elSpinner.classList.add('d-none');
             this.uiElements.elMessage.textContent = message;

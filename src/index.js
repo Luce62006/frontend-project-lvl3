@@ -9,13 +9,11 @@ const model =  {
 }
 
 const initPage = async () => {
-
     // жду инициализации словарика фраз
     await initPhrases;
 
     // виджеты страницы
     let widgetForm, widgetFeeds, widgetPosts;
-
 
     // парсинг RSS строки в объектную модель
     const parseRss = (data) => {
@@ -139,4 +137,4 @@ const initPage = async () => {
 
 }
 
-initPage();
+export default initPage();

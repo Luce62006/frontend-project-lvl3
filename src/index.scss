@@ -38,19 +38,9 @@ form.success .message {
   color: green;
 }
 
+ ul:active {
+  color: green;
 
-
-
-/*
-
-@mixin message ( $color) {
-  color: $color;
 }
 
-.error {
-  @include message(red)
-  }
-.success {
-  @include message(green)
-}*/
 
