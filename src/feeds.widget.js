@@ -10,8 +10,8 @@ export class FeedsWidget {
             return;
         }
 
-        const html = `<h2 className="card-title h4">Фиды</h2>
-            <ul className="list-group border-0 rounded-0">            
+        const html = `<h2 class="card-title h4">Фиды</h2>
+            <ul class="list-group border-0 rounded-0">            
             </ul>
            ` ;
 

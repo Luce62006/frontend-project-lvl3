@@ -12,10 +12,10 @@ export class PostsWidget {
         }
 
         const html = `
-            <div className="card-body">
-                <h2 className="card-title h4">Посты</h2>
+            <div class="card-body">
+                <h2 class="card-title h4">Посты</h2>
             </div>
-            <ul className="list-group border-0 rounded-0"></ul>
+            <ul class="list-group border-0 rounded-0"></ul>
             `;
 
         elContainer.insertAdjacentHTML('afterbegin', html);
