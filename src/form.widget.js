@@ -39,7 +39,7 @@ export class FormWidget {
                                 </div>
                             </div>
                     
-                            <button type="button"  name="add" class=" col-4 btn btn-primary btn-lg">Добавить</button>
+                            <button type="button"  aria-label="add" class=" col-4 btn btn-primary btn-lg">Добавить</button>
                             <p class="text-muted">Пример: https://ru.hexlet.io/lessons.rss</p>
                             <p class=" message"></p>
                         </div>
