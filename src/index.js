@@ -8,7 +8,7 @@ const model =  {
     rssFeeds: []
 }
 
-const initPage = async () => {
+export default async  function  initPage ()  {
     // жду инициализации словарика фраз
     await initPhrases;
 
@@ -137,4 +137,4 @@ const initPage = async () => {
 
 }
 
-export default initPage();
+ initPage() ;
