@@ -112,7 +112,7 @@ export default async  function  initPage ()  {
         fetch(rssFeedSource)
             .then(response => response.json())
             .then(data => {
-                sender.status(true, i18next.t('rssCorrect'));
+                sender.status(true, i18next.t('RSS успешно загружен'));
                 processRss(rssFeedSource, data.contents);
             })
             .catch((error)=> {
