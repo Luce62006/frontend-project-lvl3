@@ -23,7 +23,7 @@ export class FormWidget {
         // получаем контейнер (куда надо разместить себя)
         const elContainer = document.querySelector( selector);
         if (!elContainer) {
-            console.error('Ошибка сети');
+            console.log('контейнер не найден');
             return;
         }
 
