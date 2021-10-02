@@ -3,7 +3,7 @@ import {FeedsWidget} from "./feeds.widget";
 import {initPhrases} from "./phrases";
 import i18next from "i18next";
 import {PostsWidget} from "./posts.widget.js";
-
+import axios  from "axios";
 const model =  {
     rssFeeds: []
 }
@@ -108,11 +108,11 @@ export default async  function  initPage ()  {
     // обработчик добавления нового RSS потока
     const rssFeedHandler = (sender, url) => {
         const rssFeedSource = 'https://hexlet-allorigins.herokuapp.com/get?url=' + url +'&disableCache=true'
-        // eslint-disable-next-line no-undef
-        fetch(rssFeedSource)
-            .then(response => response.json())
-            .then(data => {
-                sender.status(true, i18next.t('RSS успешно загружен'));
+
+        axios.get(rssFeedSource)
+            .then(response => {
+                const data = response.data;
+                sender.status(true, i18next.t('rssCorrect'));
                 processRss(rssFeedSource, data.contents);
             })
             .catch((error)=> {
