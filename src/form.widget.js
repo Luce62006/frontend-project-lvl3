@@ -41,7 +41,7 @@ export class FormWidget {
                     
                             <button type="button"  aria-label="add" class=" col-4 btn btn-primary btn-lg">Добавить</button>
                             <p class="text-muted">Пример: https://ru.hexlet.io/lessons.rss</p>
-                            <p class="feedback message m-0 position-absolute small text-success"></p>
+                            <p class="feedback message small"></p>
                             
                         </div>
                     </form>`;
