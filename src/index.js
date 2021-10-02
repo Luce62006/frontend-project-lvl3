@@ -4,6 +4,7 @@ import {initPhrases} from "./phrases";
 import i18next from "i18next";
 import {PostsWidget} from "./posts.widget.js";
 import axios  from "axios";
+
 const model =  {
     rssFeeds: []
 }
