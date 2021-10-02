@@ -6,7 +6,7 @@ export class FeedsWidget {
         // получаем контейнер (куда надо разместить себя)
         const elContainer = document.querySelector(selector);
         if (!elContainer) {
-            console.error('Ошибка сети');
+            console.log('Ошибка сети');
             return;
         }
 

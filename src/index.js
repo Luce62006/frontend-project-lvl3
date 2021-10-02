@@ -55,7 +55,7 @@ export default async  function  initPage ()  {
             .then(data => {
                 const updatedFeed = parseRss(data.contents);
                 if (updatedFeed) {
-                    // новые посты - это те, которых не было раньше в rss потоке
+                    // новые посты те, которых не было раньше в rss потоке
                     const newPosts = updatedFeed.posts.filter((post) =>
                         !rssFeed.posts.find((e) => e.guid === post.guid)
                     );

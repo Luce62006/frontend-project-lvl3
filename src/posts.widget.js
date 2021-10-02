@@ -7,7 +7,7 @@ export class PostsWidget {
         // получаем контейнер (куда надо разместить себя)
         const elContainer = document.querySelector(selector);
         if (!elContainer) {
-            console.error( 'контейнер не найден');
+            console.log('контейнер не найден');
             return;
         }
 
