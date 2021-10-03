@@ -4,6 +4,7 @@ import {initPhrases} from "./phrases";
 import i18next from "i18next";
 import {PostsWidget} from "./posts.widget.js";
 import axios  from "axios";
+import translation from "./text"
 
 const model =  {
     rssFeeds: []
@@ -87,7 +88,7 @@ export default async  function  initPage ()  {
         const rssFeed =  parseRss(data);
 
         if (!rssFeed || !rssFeed.title) {
-            widgetForm.status(false, 'Ресурс не содержит валидный RSS');
+            widgetForm.status(false, translation.ParsingError);
             return;
         }
 

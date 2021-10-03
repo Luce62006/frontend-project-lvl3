@@ -44,6 +44,8 @@ export class PostsWidget {
             // eslint-disable-next-line no-unused-vars
             modalButton.addEventListener('click', (e) => {
                 $('#myModal').modal('show')
+                a.classList.remove('fw-bold')
+                a.classList.add('fw-normal')
                 const modalTitle = document.querySelector('#myModal .modal-title');
                 modalTitle.textContent = post.title;
                 const modalDescription = document.querySelector('#myModal .modal-body');
