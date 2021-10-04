@@ -1,10 +1,12 @@
 import {FormWidget} from "./form.widget";
 import {FeedsWidget} from "./feeds.widget";
-import {initPhrases} from "./phrases";
 import i18next from "i18next";
 import {PostsWidget} from "./posts.widget.js";
 import axios  from "axios";
-import translation from "./text"
+import ru from "./locales/ru";
+
+
+
 
 const model =  {
     rssFeeds: []
@@ -12,8 +14,14 @@ const model =  {
 
 export default async  function  initPage ()  {
     // жду инициализации словарика фраз
-    await initPhrases;
 
+    await i18next.init({
+        lng: 'ru',
+        debug: true,
+        resources: {
+            ru,
+        },
+    });
     // виджеты страницы
     let widgetForm, widgetFeeds, widgetPosts;
 
@@ -51,16 +59,15 @@ export default async  function  initPage ()  {
     const updateRss = (url, rssFeed) => {
         console.log('Обновляю RSS информацию по ' + url);
         // eslint-disable-next-line no-undef
-        fetch(url)
-            .then(response => response.json())
+        axios.get(url)
+            .then(response => response.data())
             .then(data => {
-                const updatedFeed = parseRss(data.contents);
+                const updatedFeed = parseRss(data);
                 if (updatedFeed) {
                     // новые посты те, которых не было раньше в rss потоке
                     const newPosts = updatedFeed.posts.filter((post) =>
                         !rssFeed.posts.find((e) => e.guid === post.guid)
                     );
-
                     // если новые посты есть
                     if (newPosts?.length > 0) {
                         console.log('Появились новые посты!');
@@ -88,7 +95,7 @@ export default async  function  initPage ()  {
         const rssFeed =  parseRss(data);
 
         if (!rssFeed || !rssFeed.title) {
-            widgetForm.status(false, translation.ParsingError);
+            widgetForm.status(false, i18next.t('ParsingError'));
             return;
         }
 
