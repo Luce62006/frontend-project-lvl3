@@ -3,25 +3,17 @@ import {FeedsWidget} from "./feeds.widget";
 import i18next from "i18next";
 import {PostsWidget} from "./posts.widget.js";
 import axios  from "axios";
-import ru from "./locales/ru";
+import runApp from "./locales/ru";
 
 
 
-
-const model =  {
+const model = {
     rssFeeds: []
 }
-
 export default async  function  initPage ()  {
     // жду инициализации словарика фраз
 
-    await i18next.init({
-        lng: 'ru',
-        debug: true,
-        resources: {
-            ru,
-        },
-    });
+    await runApp;
     // виджеты страницы
     let widgetForm, widgetFeeds, widgetPosts;
 
@@ -101,7 +93,7 @@ export default async  function  initPage ()  {
 
         const existingFeed = model.rssFeeds.find((e) => e.title === rssFeed.title);
         if (existingFeed) {
-            widgetForm.status(false, 'RSS уже существует');
+            widgetForm.status(false, i18next.t('notOneOfError'));
             return;
         }
 

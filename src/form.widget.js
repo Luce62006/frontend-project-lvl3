@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import {schema} from "./rssFormValidation";
+import i18next from "i18next";
 
 export class FormWidget {
 
@@ -83,10 +84,10 @@ export class FormWidget {
                 } else {
                     elForm.classList.add('error');
                     if( elInput.value ){
-                        elMessage.textContent = this.phrases.t('rssError');
+                        elMessage.textContent = i18next.t('rssError');
                     }
                     else {
-                        elMessage.textContent = 'Не должно быть пустым';
+                        elMessage.textContent = i18next.t('requiredError');
                     }
                 }
             });
