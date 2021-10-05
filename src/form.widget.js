@@ -63,8 +63,8 @@ export class FormWidget {
         }
 
         // локализация
-        elExampleOfURL.innerHTML = this.phrases.t('example');
-        elSubmit.innerHTML = this.phrases.t('btnAdd');
+        elExampleOfURL.innerHTML = i18next.t('example');
+        elSubmit.innerHTML = i18next.t('btnAdd');
 
         // eslint-disable-next-line no-unused-vars
         elSubmit.addEventListener('click', (e) => {

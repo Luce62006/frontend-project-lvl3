@@ -7,18 +7,19 @@ import runApp from "./locales/ru";
 
 
 
-const model = {
-    rssFeeds: []
-}
+
 export default async  function  initPage ()  {
     // жду инициализации словарика фраз
 
     await runApp;
     // виджеты страницы
     let widgetForm, widgetFeeds, widgetPosts;
-
+    const model = {
+        rssFeeds: []
+    }
     // парсинг RSS строки в объектную модель
     const parseRss = (data) => {
+
         const rssFeed = {
             posts: []
         };
