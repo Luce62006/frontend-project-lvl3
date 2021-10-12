@@ -4,6 +4,7 @@ import i18next from "i18next";
 import {PostsWidget} from "./posts.widget.js";
 import axios  from "axios";
 import runApp from "./locales/ru";
+import {schema} from "./rssFormValidation";
 
 
 
@@ -14,9 +15,35 @@ export default async  function  initPage ()  {
     await runApp;
     // виджеты страницы
     let widgetForm, widgetFeeds, widgetPosts;
-    const model = {
-        rssFeeds: []
+
+    const state = {
+        valuedState : 'notOneOfError',
+        feedList: [],
+        postsList:[],
+        modalState:{
+            idPost: null,
+        },
+        visitedPosts: new Set(),
     }
+    const elForm= document.querySelector(`${selector} form`);
+    elForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let formData;
+        // eslint-disable-next-line no-undef
+        formData = new FormData(e.target);
+        formData.get('url');
+
+        schema.isValid(formData).then((valid) => {
+            if (valid) {state.valuedState='rssCorrect',
+                state.feedList= []
+            }
+            else {
+                state.valuedState ='rssError'
+            }
+            })
+        });
+
+
     // парсинг RSS строки в объектную модель
     const parseRss = (data) => {
 
