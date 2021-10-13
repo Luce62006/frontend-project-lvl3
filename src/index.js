@@ -5,6 +5,7 @@ import {PostsWidget} from "./posts.widget.js";
 import axios  from "axios";
 import runApp from "./locales/ru";
 import {schema} from "./rssFormValidation";
+import onChange from "on-change";
 
 
 
@@ -25,23 +26,77 @@ export default async  function  initPage ()  {
         },
         visitedPosts: new Set(),
     }
-    const elForm= document.querySelector(`${selector} form`);
-    elForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let formData;
-        // eslint-disable-next-line no-undef
-        formData = new FormData(e.target);
-        formData.get('url');
+    const controller = (state, valuedState) => {
+        state.valuedState = valuedState;
+    };
 
-        schema.isValid(formData).then((valid) => {
-            if (valid) {state.valuedState='rssCorrect',
-                state.feedList= []
+    const render = (valuedState, { elMessage }) => {
+        switch (valuedState) {
+            case "rssError":
+                elMessage.textContent = i18next.t("rssError");
+                break;
+
+            case "rssCorrect":
+                elMessage.textContent = i18next.t("rssCorrect");
+                break;
+
+            case "requiredError":
+                elMessage.textContent = i18next.t("requiredError");
+                break;
+
+            case "ParsingError":
+                elMessage.textContent = i18next.t("ParsingError");
+                break;
+            default:
+                throw new Error(`Unknown process state: ${valuedState}`);
+        }
+    };
+
+    const view = (initialState, elements) => {
+        const watchedState = onChange(initialState, (path, value) => {
+            switch (path) {
+                case "valuedState": {
+                    render(value, elements);
+                    break;
+                }
+                default:
+                    break;
             }
-            else {
-                state.valuedState ='rssError'
-            }
-            })
         });
+
+        return watchedState;
+    };
+
+    const init = () => {
+        const elements = {
+            // eslint-disable-next-line no-undef
+            elForm: document.querySelector("form"),
+            elMessage: document.querySelector(".message"),
+            elSubmit: document.querySelector("form button")
+        };
+
+        const watchedState = view(state, elements);
+        elements.elSubmit.classList.add("is-valid");
+
+        elements.elForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            // eslint-disable-next-line no-undef
+            const formData = new FormData(e.target);
+
+            const isValid = schema.isValidSync(formData.get("url"));
+
+            if (isValid) {
+                controller(watchedState, "rssCorrect");
+            } else {
+                controller(watchedState, "rssError");
+            }
+        });
+    };
+
+   init();
+
+
 
 
     // парсинг RSS строки в объектную модель

@@ -57,6 +57,7 @@ const view = (initialState, elements) => {
 
 const init = () => {
     const elements = {
+        // eslint-disable-next-line no-undef
         elForm: document.querySelector("form"),
         elMessage: document.querySelector(".message"),
         elSubmit: document.querySelector("form button")
