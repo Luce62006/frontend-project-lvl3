@@ -1,4 +1,4 @@
-import {FormWidget} from "./form.widget";
+/*import {FormWidget} from "./form.widget";*/
 import {FeedsWidget} from "./feeds.widget";
 import i18next from "i18next";
 import {PostsWidget} from "./posts.widget.js";
@@ -15,7 +15,7 @@ export default async  function  initPage ()  {
 
     await runApp;
     // виджеты страницы
-    let widgetForm, widgetFeeds, widgetPosts;
+    let /*widgetForm*/ widgetFeeds, widgetPosts;
 
     const state = {
         valuedState : 'notOneOfError',
@@ -26,6 +26,7 @@ export default async  function  initPage ()  {
         },
         visitedPosts: new Set(),
     }
+
     const controller = (state, valuedState) => {
         state.valuedState = valuedState;
     };
