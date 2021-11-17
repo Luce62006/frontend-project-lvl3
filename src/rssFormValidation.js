@@ -1,7 +1,4 @@
 import * as yup from "yup";
 
 
- export const schema = yup.object().shape({
-    url: yup.string().url().required().notOneOf([])
-
-    });
+export const schema = yup.string().url().required().notOneOf([])

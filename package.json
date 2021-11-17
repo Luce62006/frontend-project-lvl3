@@ -12,6 +12,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Luce62006/frontend-project-lvl3.git"
+
   },
   "author": "Luce62006",
   "license": "ISC",
@@ -37,6 +38,7 @@
     "bootstrap": "^5.1.0",
     "copy-webpack-plugin": "^9.0.1",
     "i18next": "^20.6.1",
+    "lodash": "^4.17.21",
     "on-change": "^4.0.0",
     "yup": "^0.32.9"
   }

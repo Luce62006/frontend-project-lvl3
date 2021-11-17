@@ -1,51 +1,60 @@
-import i18next from "i18next";
 import onChange from "on-change";
-import {schema} from "./rssFormValidation";
+import i18next from 'i18next';
 
-
-const state = {
-    valuedState: "notOneOfError",
-    feedList: [],
-    postsList: [],
-    modalState: {
-        idPost: null
-    },
-    visitedPosts: new Set()
-};
-
-const controller = (state, valuedState) => {
-    state.valuedState = valuedState;
-};
-
-const render = (valuedState, { elMessage }) => {
+const render = (valuedState, { elMessage, elInput }, t) => {
     switch (valuedState) {
         case "rssError":
-            elMessage.textContent = i18next.t("rssError");
+            elMessage.textContent = t("rssError");
+            elMessage.classList.add("rssError");
+           elInput.style.border = 'thick solid red';
             break;
 
         case "rssCorrect":
-            elMessage.textContent = i18next.t("rssCorrect");
+            elMessage.textContent = t("rssCorrect");
+            elMessage.classList.add("rssCorrect");
+            elInput.style.border = null;
             break;
 
         case "requiredError":
-            elMessage.textContent = i18next.t("requiredError");
+            elMessage.textContent = t("requiredError");
+            elMessage.classList.add("rssError");
+            elInput.style.border = 'thick solid red';
             break;
 
         case "ParsingError":
-            elMessage.textContent = i18next.t("ParsingError");
+            elMessage.textContent = t("ParsingError");
+            elMessage.classList.add("rssError");
+            elInput.style.border = 'thick solid red';
             break;
-
+        case "Sending":
+            elMessage.textContent = t("Sending");
+            break;
         default:
             throw new Error(`Unknown process state: ${valuedState}`);
     }
 };
 
-const view = (initialState, elements) => {
+const renderFeeds = (valuedState,{elFeeds}) => {
+    const feedsContent = valuedState.feeds.map((feed) => {
+        const title = `<h3>${feed.title}</h3>`;
+        const description = `<p>${feed.description}</p>`;
+        const titleline = `<li class="list-group-item">${title}${description}</li>`;
+        return titleline;
+    }).join('');
+    const htmlFeeds = `<h3>${i18next.t('feeds')}</h3><ul>${feedsContent}</ul>`;
+    elFeeds.innerHTML = `${htmlFeeds}`;
+};
+
+export const view = (initialState, elements, t) => {
     const watchedState = onChange(initialState, (path, value) => {
         switch (path) {
             case "valuedState": {
-                render(value, elements);
+                render(value, elements, t);
                 break;
+            }
+            case 'feeds': {
+                    renderFeeds(initialState);
+                    break;
             }
             default:
                 break;
@@ -54,33 +63,3 @@ const view = (initialState, elements) => {
 
     return watchedState;
 };
-
-const init = () => {
-    const elements = {
-        // eslint-disable-next-line no-undef
-        elForm: document.querySelector("form"),
-        elMessage: document.querySelector(".message"),
-        elSubmit: document.querySelector("form button")
-    };
-
-    const watchedState = view(state, elements);
-    elements.elSubmit.classList.add("is-valid");
-
-    elements.elForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        // eslint-disable-next-line no-undef
-        const formData = new FormData(e.target);
-
-        const isValid = schema.isValidSync(formData.get("url"));
-
-        if (isValid) {
-            controller(watchedState, "rssCorrect");
-        } else {
-            controller(watchedState, "rssError");
-        }
-    });
-};
-
-export default init();
-
