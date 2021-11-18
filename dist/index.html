@@ -1,8 +1,6 @@
 
 <!DOCTYPE html>
-<script type="module">
 
-</script>
 
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -24,7 +22,7 @@
             integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
             crossorigin="anonymous"></script>
 
-</head>
+<script defer src="main.js"></script></head>
 <body class="bg-white">
 <div class="container-fluid bg-dark p-5 ">
     <div class="row-mb-3">
@@ -34,10 +32,13 @@
             <div id="formRss">
             </div>
 
-            <form class="form-floating">
-    <div class="row mb-3 justify-content-between p-2">
+            <form class="form-floating rss-form">
+
+
+                <div class="row mb-3 justify-content-between p-2">
+
         <label for="input-form"></label>
-        <input class="col-lg-7 form-control-lg form-control" name="url" aria-label="url"  id="input-form" type="url" placeholder="Ссылка RSS" />
+        <input autofocus required class="col-lg-7 form-control-lg form-control" name="url" aria-label="url"  id="input-form" type="url" placeholder="Ссылка RSS" />
 
         <div class="text-center col-1">
             <div class="spinner-border d-none" role="status">
@@ -45,7 +46,7 @@
             </div>
         </div>
 
-        <button type="submit"  aria-label="add" class=" col-4 btn btn-primary btn-lg">Добавить</button>
+        <button type="submit"  name="add" class=" col-4 btn btn-primary btn-lg">Добавить</button>
         <p class="text-muted">Пример: https://ru.hexlet.io/lessons.rss</p>
         <p class="feedback message small"></p>
 
@@ -58,10 +59,10 @@
 <section class="container-fluid container-xxl p-5">
     <div class="row">
         <div class="col-8">
-            <div class="card border-0" id="postsRss">
+            <div class="card border-0" id="posts">
             </div>
         </div>
-        <div class=" col-3 card-body" id="feedsRss">
+        <div class=" col-3 card-body" id="feeds">
         </div>
     </div>
 </section>
@@ -76,12 +77,12 @@
 
 </footer>
 
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                <button type="button" id=="close-button" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 description
@@ -89,12 +90,12 @@
             <div class="modal-footer">
 
 
-                <a class="btn btn-primary full-article" href="#" role="button" target="_blank" rel="noopener noreferrer">Читать полностью </a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                <a id="readLink" class="btn btn-primary full-article" href="#" role="button" target="_blank" rel="noopener noreferrer">Читать полностью </a>
+                <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
             </div>
         </div>
     </div>
 </div>
 
-<script src="app.bundle.js"></script></body>
+</body>
 </html>

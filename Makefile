@@ -1,19 +1,17 @@
+develop:
+	npx webpack serve
+
 install:
 	npm ci
 
-run:
-	bin/nodejs-package.js 10
+build:
+	rm -rf dist
+	NODE_ENV=production npx webpack
 
 test:
 	npm test
 
-test-coverage:
-	npm test -- --coverage --coverageProvider=v8
-
 lint:
 	npx eslint .
-
-publish:
-	npm publish --dry-run
 
 .PHONY: test

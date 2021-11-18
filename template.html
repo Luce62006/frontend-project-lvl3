@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!doctype html>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RSS агрегатор</title>
+</head>
+<body class="bg-white">
+<div class="container-fluid bg-dark p-5 ">
+    <div class="row-mb-3">
+        <div class="col-lg-8 col-md-10 header mx-auto">
+            <h1 class="text-light display-3">RSS агрегатор</h1>
+            <h2  class="text-light h5">Начните читать RSS сегодня! Это легко, это красиво.</h2>
+            <div id="formRss">
+            </div>
+            <form class="form-floating rss-form">
+                <div class="row mb-3 justify-content-between p-2">
+
+        <label for="input-form"></label>
+        <input autofocus required class="col-lg-7 form-control-lg form-control" name="url" aria-label="url"  id="input-form" type="url" placeholder="Ссылка RSS" />
+
+        <div class="text-center col-1">
+            <div class="spinner-border d-none" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <button type="submit"  name="add" class=" col-4 btn btn-primary btn-lg">Добавить</button>
+        <p class="text-muted">Пример: https://ru.hexlet.io/lessons.rss</p>
+        <p class="feedback message small"></p>
+
+    </div>
+
+</form>
+</div>
+</div>
+    </div>
+<section class="container-fluid container-xxl p-5">
+    <div class="row">
+        <div class="col-8">
+            <div class="card border-0" id="posts">
+            </div>
+        </div>
+        <div class=" col-3 card-body" id="feeds">
+        </div>
+    </div>
+</section>
+
+
+
+<footer class=" bg-light text-center ">
+
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        <a class="text-dark" href="https://hexlet.io">created by Hexlet</a>
+    </div>
+
+</footer>
+
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" id=="close-button" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                description
+            </div>
+            <div class="modal-footer">
+
+
+                <a id="readLink" class="btn btn-primary full-article" href="#" role="button" target="_blank" rel="noopener noreferrer">Читать полностью </a>
+                <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
