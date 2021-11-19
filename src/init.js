@@ -10,7 +10,7 @@ import * as yup from "yup";
 
 export default () => {
     const elements = {
-        input: document.querySelector('.form-control'),
+        input: document.querySelector('#input-form'),
         form: document.querySelector('.rss-form'),
         feedback: document.querySelector('.feedback'),
         button: document.querySelector('[name="add"]'),
