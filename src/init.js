@@ -5,7 +5,7 @@ import { renderLanguage, watchState } from './view.js';
 import _ from 'lodash';
 import axios from "axios";
 import parse from "./parse.js";
- import resources from "./locales/ru"
+ import resources from "./locales/index.js"
 import * as yup from "yup";
 
 export default () => {
