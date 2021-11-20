@@ -10,4 +10,6 @@
 
 
 
-https://frontend-project-lvl3-nu-wheat.vercel.app/
+https://frontend-project-lvl3-nu-wheat.vercel.app
+
+RSS-aggregator - web application for automatic collection of messages from sources exporting to RSS formats 
