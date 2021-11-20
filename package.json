@@ -4,7 +4,8 @@
   "description": "RSS reader",
   "main": "src/init.js",
   "scripts": {
-    "test": "jest --colors"
+    "test": "jest --colors",
+    "lint:fix": "eslint --fix --ext .js,.jsx ."
   },
   "repository": {
     "type": "git",
