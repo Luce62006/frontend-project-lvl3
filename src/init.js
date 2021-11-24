@@ -1,11 +1,11 @@
 import i18next from "i18next";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/js/dist/modal';
-import { renderLanguage, watchState } from './view.js';
+import  watchState  from './view.js';
 import _ from 'lodash';
 import axios from "axios";
 import parse from "./parse.js";
- import resources from "./locales/ru"
+ import resources from './locales/index';
 import * as yup from "yup";
 
 export default () => {
@@ -26,7 +26,9 @@ export default () => {
 console.log(elements.input)
     const schema = yup.string('NotString').url('notUrl').required('notRequired');
 
-    i18next.init({
+    const i18nextInstance = i18next.createInstance();
+    return i18nextInstance
+        .init({
         lng: 'ru',
         debug: true,
         resources,
@@ -53,7 +55,7 @@ console.log(elements.input)
         },
     };
 
-    const watchedState = watchState(state, elements);
+    const watchedState = watchState(state, elements,i18nextInstance.t.bind(i18nextInstance));
     const getUrlWithProxy = (url) => {
         const newUrl = new URL('/get', 'https://hexlet-allorigins.herokuapp.com');
         newUrl.searchParams.set('disableCache', 'true');
@@ -63,7 +65,7 @@ console.log(elements.input)
 
     const validate = (url) => {
         const urls = watchedState.feeds.map((feed) => feed.url);
-        const newSchema = schema.notOneOf(urls, 'theSame');
+        const newSchema = schema.notOneOf(urls, i18nextInstance.t('theSame'));
         try {
             newSchema.validateSync(url);
             watchedState.form.valid = true;
@@ -85,11 +87,11 @@ console.log(elements.input)
 
     const getErrorType = (error) => {
         if (error.isAxiosError) {
-            return 'networkError';
+            return i18nextInstance.t('networkError');
         } if (error.isParsingError) {
-            return 'parsingError';
+            return i18nextInstance.t('parsingError');
         }
-        return 'unknownError';
+        return i18nextInstance.t('unknownError');
     };
 
     const handleSubmit = (e) => {
@@ -124,7 +126,7 @@ console.log(elements.input)
             });
     };
 
-    renderLanguage();
+
     elements.input.addEventListener('input', handleInput);
 
     elements.form.addEventListener('submit', handleSubmit);

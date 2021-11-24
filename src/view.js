@@ -1,16 +1,11 @@
 import onChange from "on-change";
 import i18next from 'i18next';
 
-const renderLanguage = () => {
-    document.querySelectorAll('[data-i18n]').forEach((el) => {
-        el.textContent = i18next.t(`${el.dataset.i18n}`);
-    });
-};
 
-const watchState = (state, elements) => {
+const watchState = (state, elements,t) => {
     const renderSuccessText = () => {
         elements.input.classList.remove('is-invalid');
-        elements.feedback.textContent = i18next.t('success');
+        elements.feedback.textContent = t('success');
         elements.feedback.classList.remove('text-danger');
         elements.feedback.classList.remove('text-info');
         elements.feedback.classList.add('text-success');
@@ -26,7 +21,7 @@ const watchState = (state, elements) => {
         elements.feedback.classList.remove('text-danger');
         elements.feedback.classList.remove('text-success');
         elements.feedback.classList.add('text-info');
-        elements.feedback.textContent = i18next.t('loading');
+        elements.feedback.textContent = t('loading');
     };
 
     const renderFeeds = (stateValue) => {
@@ -36,7 +31,7 @@ const watchState = (state, elements) => {
             const titleline= `<li class="list-group-item">${title}${description}</li>`;
             return titleline;
         }).join('');
-        const htmlFeeds = `<h3>${i18next.t('feeds')}</h3><ul>${feedsContent}</ul>`;
+        const htmlFeeds = `<h3>${t('feeds')}</h3><ul>${feedsContent}</ul>`;
         elements.feeds.innerHTML = `${htmlFeeds}`;
     };
 
@@ -46,7 +41,7 @@ const watchState = (state, elements) => {
             const resultButtons= `<li class="list-group-item d-flex justify-content-between align-itemsstart">
     <a href="${link}" class="${className}" data-id="${id}" data-id-text="${id}" target="_blank">${title}</a>
     <button id = "details" data-bs-toggle="modal" data-bs-target="#modal" 
-    class="btn btn-primary btn-sm pull-right" data-id=${id}>${i18next.t('watch')}</button></span></li>`;
+    class="btn btn-primary btn-sm pull-right" data-id=${id}>${t('watch')}</button></span></li>`;
             return resultButtons;
         }).join('');
 
@@ -54,7 +49,7 @@ const watchState = (state, elements) => {
     };
 
     const renderPosts = (stateValue) => {
-        elements.posts.innerHTML = `<h3>${i18next.t('posts')}</h3>${getPostsHtml(stateValue)}`;
+        elements.posts.innerHTML = `<h3>${t('posts')}</h3>${getPostsHtml(stateValue)}`;
     };
 
     const renderModal = (stateValue) => {
@@ -72,7 +67,7 @@ const watchState = (state, elements) => {
     const renderFormError = (stateValue) => {
         elements.input.classList.add('is-invalid', true);
         elements.feedback.classList.add('text-danger');
-        elements.feedback.textContent = i18next.t(`${stateValue.form.error}`);
+        elements.feedback.textContent = t(`${stateValue.form.error}`);
         elements.input.removeAttribute('readonly');
         elements.button.removeAttribute('disabled');
     };
@@ -80,7 +75,7 @@ const watchState = (state, elements) => {
     const renderLoadingError = (stateValue) => {
         elements.input.classList.add('is-invalid', true);
         elements.feedback.classList.add('text-danger');
-        elements.feedback.textContent = i18next.t(`${stateValue.loadingProcess.error}`);
+        elements.feedback.textContent = t(`${stateValue.loadingProcess.error}`);
         elements.input.removeAttribute('readonly');
         elements.button.removeAttribute('disabled');
     };
@@ -134,5 +129,5 @@ const watchState = (state, elements) => {
     return watchedState;
 };
 
-export { renderLanguage, watchState };
+export  default watchState ;
 
