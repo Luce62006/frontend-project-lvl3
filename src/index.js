@@ -1,3 +1,2 @@
-import app from './init';
-
-app();
+import app from "./init";
+ app();
