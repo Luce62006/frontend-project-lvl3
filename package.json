@@ -7,20 +7,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hexlet-boilerplates/webpack-package.git"
+    "url": "git+https://github.com/Luce62006/frontend-project-lvl3.git"
   },
   "author": "Luce62006",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hexlet-boilerplates/webpack-package/issues"
+    "url": "https://github.com/Luce62006/frontend-project-lvl3/issues"
   },
-  "homepage": "https://github.com/hexlet-boilerplates/webpack-package#readme",
+  "homepage": "https://github.com/Luce62006/frontend-project-lvl3#readme",
   "jest": {
     "verbose": true,
     "testURL": "http://localhost/",
     "testEnvironment": "jsdom"
   },
-  "main": "../../Desktop/webpack-package-master/src/init.js",
+  "main": "src/init.js",
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/eslint-parser": "^7.15.4",
