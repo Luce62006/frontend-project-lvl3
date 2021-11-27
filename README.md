@@ -6,8 +6,6 @@
 
 <a href="https://codeclimate.com/github/Luce62006/frontend-project-lvl3/maintainability"><img src="https://api.codeclimate.com/v1/badges/649843f0bdb7f5ba3755/maintainability" /></a>
 
-[![linter](https://github.com/Luce62006/frontend-project-lvl3/workflows/linter-and-tests/badge.svg)](https://github.com/Luce62006/frontend-project-lvl3/actions)
-
 
 
 https://frontend-project-lvl3-nu-wheat.vercel.app/
