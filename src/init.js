@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/js/dist/modal';
 import axios from 'axios';
 import * as yup from 'yup';
+import _ from 'lodash';
 import watchState from './view.js';
 import parse from './parse.js';
 import resources from './locales/index';
@@ -75,7 +76,6 @@ export default () => {
       };
 
       const handleInput = (e) => {
-        console.log(e);
         watchedState.form.processState = 'filling';
         watchedState.form.fields.url = e.target.value;
         validate(watchedState.form.fields.url);
@@ -133,8 +133,11 @@ export default () => {
         const promises = watchedState.feeds.map((feed) => axios.get(getUrlWithProxy(feed.url))
           .then((response) => {
             const parsedRss = parse(response.data.contents);
-            const result = _.differenceWith(parsedRss.items,
-              watchedState.posts, (a, b) => a.title === b.title);
+            const result = _.differenceWith(
+              parsedRss.items,
+              watchedState.posts,
+              (a, b) => a.title === b.title,
+            );
             const posts = result.map((item) => ({ id: _.uniqueId(), ...item, feedId: feed.id }));
             watchedState.posts.unshift(...posts);
           }).catch(_.noop));
