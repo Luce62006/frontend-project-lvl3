@@ -1,4 +1,4 @@
-<!doctype html>
+
 <html lang="ru" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
@@ -15,28 +15,32 @@
         <div class="col-lg-8 col-md-10 header mx-auto">
             <h1 class="text-light display-3">RSS агрегатор</h1>
             <h2  class="text-light h5">Начните читать RSS сегодня! Это легко, это красиво.</h2>
-            <div id="formRss">
-            </div>
-            <form class="form-floating rss-form">
-                <div class="row mb-3 justify-content-between p-2">
+            <form active class="rss-form text-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating">
+                            <input autofocus required id="url-input" name="url" aria-label="url" class="form-control w-100"
+                                   placeholder="ссылка RSS" autocomplete="off">
+                            <label for="url-input" data-i18n="label">insert rss here</label>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button role="button" name="add" aria-label="add" type="submit" class="h-100 btn btn-lg btn-primary px-sm-5">Добавить</button>
+                    </div>
+                </div>
 
-        <label for="input-form"></label>
-        <input autofocus required class="col-lg-7 form-control-lg" name="url" aria-label="url"  id="input-form" type="url" placeholder="Ссылка RSS" />
-
+            </form>
         <div class="text-center col-1">
             <div class="spinner-border d-none" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
 
-        <button role="button"  type="submit" aria-label="add" name="add" class=" col-4 btn btn-primary btn-lg">Добавить</button>
         <p class="text-muted">Пример: https://ru.hexlet.io/lessons.rss</p>
         <p class="feedback message small"></p>
 
     </div>
-
-</form>
-</div>
+    </div>
 </div>
     </div>
 <section class="container-fluid container-xxl p-5">
@@ -56,7 +60,7 @@
 
 <footer class=" bg-light text-center ">
 
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); position: relative">
         <a class="text-dark" href="https://hexlet.io">created by Hexlet</a>
     </div>
 

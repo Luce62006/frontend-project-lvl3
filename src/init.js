@@ -10,7 +10,7 @@ import resources from './locales/index';
 
 export default () => {
   const elements = {
-    input: document.querySelector('.form-control-lg'),
+    input: document.querySelector('.form-control'),
     form: document.querySelector('.rss-form'),
     feedback: document.querySelector('.feedback'),
     button: document.querySelector('[name="add"]'),
