@@ -1,7 +1,6 @@
 import i18next from 'i18next';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/js/dist/modal';
-
 import axios from 'axios';
 import * as yup from 'yup';
 import _ from 'lodash';
