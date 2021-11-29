@@ -5,10 +5,11 @@
   "main": "./src/init.js",
   "scripts": {
     "start": "webpack serve",
-    "build": "NODE_ENV=production webpack",
-    "test": "jest --colors",
-    "lint:fix": "eslint --fix --ext .js,.jsx ."
+    "build": "NODE_ENV=production webpack"
   },
+    "test": "jest --colors",
+    "lint:fix": "eslint --fix --ext .js,.jsx .",
+
   "repository": {
     "type": "git",
     "url": "https://github.com/Luce62006/frontend-project-lvl3.git"
