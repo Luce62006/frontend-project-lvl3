@@ -26,8 +26,7 @@ const watchState = (state, elements, t) => {
     const feedsContent = stateValue.feeds.map((feed) => {
       const title = `<h3>${feed.title}</h3>`;
       const description = `<p>${feed.description}</p>`;
-      const titleline = `<li class="list-group-item">${title}${description}</li>`;
-      return titleline;
+      return `<li class="list-group-item">${title}${description}</li>`;
     }).join('');
     const htmlFeeds = `<h3>${t('feeds')}</h3><ul>${feedsContent}</ul>`;
     elements.feeds.innerHTML = `${htmlFeeds}`;
